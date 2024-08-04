@@ -40,6 +40,11 @@ const fileTypes = ["pdf"];
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if(!googleCaptcha) {
+            toast.error('Please complete the captcha');
+            return;
+        }
         
        if(!file) {
           toast.error('Please upload a file');
@@ -125,34 +130,39 @@ const fileTypes = ["pdf"];
             <form className='text-left space-y-4 bg-slate-100/50 p-4' onSubmit={handleSubmit}>
                 <div className='space-y-4 mb-4'>
                   <section className='grid grid-cols-2 gap-4'>
-                  <input type="text" placeholder='Naam' className='w-full p-2 border-2 border-gray-400/20'  onChange={
+                  <input type="text" placeholder='Naam' className='w-full p-2 border-2 border-gray-400/20'  required onChange={
                         (e) => setResume({...resume, name: e.target.value})
                     }/>
 
-                    <input type="text" placeholder='Achternaam' className='w-full p-2 border-2 border-gray-400/20'  onChange={
+                    <input type="text" placeholder='Achternaam' className='w-full p-2 border-2 border-gray-400/20' required onChange={
                         (e) => setResume({...resume, lastName: e.target.value})
                     }/>
 
-                        <input type="text" placeholder='Date of Birth' className='w-full p-2 border-2 border-gray-400/20'  onChange={
+                        <input type="text" placeholder='Date of Birth' className='w-full p-2 border-2 border-gray-400/20' required  onChange={
                         (e) => setResume({...resume, DateOfBirth: e.target.value})
                     }/>
                   </section>
 
                   <section className='grid grid-cols-2 gap-2'>
                   <input type="email" placeholder='Email' className='w-full p-2 border-2 border-gray-400/20' 
+                  required
                     onChange={
                         (e) => setResume({...resume, email: e.target.value})
                     } />
 
 
                     <input type="Telefoonnummer" placeholder='Phone' className='w-full p-2 border-2 border-gray-400/20' 
+                     required
                     onChange={
                         (e) => setResume({...resume, phone: e.target.value})
                     }/>
                   </section>
 
                    <section className='grid grid-cols-2 '>
-                   <input type="text" placeholder='Adres' className='w-full p-2 border-2 border-gray-400/20'  onChange={
+                  
+                   <input type="text" placeholder='Adres' className='w-full p-2 border-2 border-gray-400/20' 
+                    required
+                   onChange={
                         (e) => setResume({...resume, Adres: e.target.value})
                     }/>
                    </section>
@@ -162,28 +172,33 @@ const fileTypes = ["pdf"];
               
                     <label>
                     Beschik je over eigen vervoer?
-                    <input type="text" placeholder=' Ja/Nee' className='w-full p-2 mt-2 border-2 border-gray-400/20'  onChange={
+                    <input type="text" placeholder=' Ja/Nee' className='w-full p-2 mt-2 border-2 border-gray-400/20' 
+                     required
+                    onChange={
                         (e) => setResume({...resume, Question2: e.target.value})
                     }/>
                     </label>
 
                     <label>
                     Ben je tussen 3:00 s’morgen en 18:00 s’middags beschikaar?
-                    <input type="text" placeholder='Ja/Nee' className='w-full p-2 mt-2 border-2 border-gray-400/20'  onChange={
+                    <input type="text" placeholder='Ja/Nee' className='w-full p-2 mt-2 border-2 border-gray-400/20'  required onChange={
                         (e) => setResume({...resume, Question3: e.target.value})
                     }/>
                     </label>
 
                     <label className='text-gray-600 '>
                     Wat is jouw laatstgenoten opleiding (Afgerond MBO is een vereiste)
-                    <input type="text" placeholder='Vul hier aan' className='w-full  p-2 mt-2 border-2 border-gray-400/20'  onChange={
+                    <input type="text" placeholder='Vul hier aan' className='w-full  p-2 mt-2 border-2 border-gray-400/20'  required onChange={
                         (e) => setResume({...resume, Question1: e.target.value})
                     }/>
                     </label>
 
                     <label>
                     Hoe heb je ons gevonden? (Facebook, Instagram, TikTok, Vrienden/Familie, Radio, TV, Billboard)
-                    <input type="text" placeholder='Hoe heb je ons gevonden? (Facebook, Instagram, TikTok, Vrienden/Familie, Radio, TV, Billboard)' className='w-full p-2 mt-2 border-2 border-gray-400/20'  onChange={
+                    <input type="text" placeholder='Hoe heb je ons gevonden? (Facebook, Instagram, TikTok, Vrienden/Familie, Radio, TV, Billboard)' 
+                    className='w-full p-2 mt-2 border-2 border-gray-400/20' 
+                    required
+                    onChange={
                         (e) => setResume({...resume, Question4: e.target.value})
                     }/>
                     </label>
@@ -195,6 +210,7 @@ const fileTypes = ["pdf"];
                        <label>
                           Motivatie
                        <textarea minLength={5} placeholder='Motivatie' className='w-full p-2 border-2 border-gray-400/20 min-h-[150px]'  
+                        required
                     onChange={
                         (e) => setResume({...resume, message: e.target.value})
                     }></textarea>
@@ -203,6 +219,7 @@ const fileTypes = ["pdf"];
                     <label>
                     Geef hier een korte toelichting waarom jij bij ons wilt werken en wat voor ervaring je hebt.
                     <textarea minLength={5} placeholder='Geef hier een korte toelichting waarom jij bij ons wilt werken en wat voor ervaring je hebt.' className='w-full p-2 border-2 border-gray-400/20 min-h-[150px]'  
+                     required
                     onChange={
                         (e) => setResume({...resume, message2: e.target.value})
                     }></textarea>
@@ -210,11 +227,14 @@ const fileTypes = ["pdf"];
                     <hr />
                  <label>
                     Upload jouw CV
+                    <br />
                     <input 
                     type="file"
                     accept=".pdf"
                     multiple={false}
                     onChange={(e) => setFile(e.target.files[0])}
+                    className='mt-2'
+                    required
                     />
 
 
@@ -233,11 +253,12 @@ const fileTypes = ["pdf"];
                   
                 </div>
                 <label className='flex gap-2'>
-                <input type="checkbox"  onChange={
-                        (e) => setAgree(!agree)
+                <input type="checkbox" 
+                required
+                 onChange={(e) => {setAgree(!agree); localStorage.setItem('cookies',true)}
                 }/> <span className='ml-2'>Accept terms and conditions</span>
                 </label>
-                <ReCAPTCHA sitekey={import.meta.env.VITE_GOOGLE_CAPTIA_KEY} onChange={handleCaptchaResponseChange} theme="dark" className=' ' />
+                <ReCAPTCHA sitekey={import.meta.env.VITE_GOOGLE_CAPTCHA_KEY} onChange={handleCaptchaResponseChange} theme="dark" className=' ' />
           
                 <button className='w-full p-2 bg-[#f9a826] text-white'>Apply</button>
             </form>

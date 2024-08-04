@@ -1,6 +1,27 @@
 import React from 'react'
+import { useState,useEffect } from 'react'
+import Cookies from './Cookies'
+import Privacy from './Privacy'
 
 export default function Footer() {
+
+  const [cookies, setCookies] = useState(false)
+  const [privacy, setPrivacy] = useState(false)
+
+  const handleCookies = () => {
+    setCookies(!cookies)
+  }
+
+  useEffect(() => {
+    const cooky = localStorage.getItem('cookies')
+    if (cooky === 'true') {
+      setCookies(false)
+    } else {
+      setCookies(true)
+    }
+  }, [])
+
+
   return (
     <footer className="bg-gray-900">
   <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8 lg:pt-24">
@@ -26,15 +47,17 @@ export default function Footer() {
     >
       <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end pt-4">
         <li>
-          <a href="#" className=" transition hover:opacity-75 text-gray-400">
+          <span onClick={() => setPrivacy(true)} className=" transition cursor-pointer hover:opacity-75 text-gray-400">
             Privacy Policy
-          </a>
+          </span>
+          <Privacy privacy={privacy} setPrivacy={setPrivacy} />
         </li>
 
         <li>
-          <a href="#" className="transition hover:opacity-75 text-gray-400">
+          <span  onClick={handleCookies} className="transition hover:opacity-75 text-gray-400 cursor-pointer">
             Cookies
-          </a>
+          </span>
+          <Cookies cookies={cookies} setCookies={setCookies} />
         </li>
       </ul>
 

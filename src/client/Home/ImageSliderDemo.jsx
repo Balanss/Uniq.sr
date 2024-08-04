@@ -54,7 +54,7 @@ export function ImagesSliderDemo() {
       )
     })
 
-    const Uniq = 'Uniq'.split('').map((letter, index) => {
+    const Uniq = 'uniq'.split('').map((letter, index) => {
       return (
         <motion.span
           initial={{ y: -100 ,opacity:0}}
