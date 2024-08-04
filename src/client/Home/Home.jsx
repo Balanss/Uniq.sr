@@ -4,9 +4,14 @@ import { motion } from 'framer-motion'
 import { ImagesSliderDemo } from './ImageSliderDemo';
 import { HoverBorderGradientGreen } from '../ui/HoverBorderGradientGreen';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 export default function Home() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

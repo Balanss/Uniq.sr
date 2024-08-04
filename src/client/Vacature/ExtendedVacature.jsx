@@ -2,6 +2,7 @@ import React, { useEffect ,useState} from 'react'
 import axios from 'axios'
 import { FileUploader } from "react-drag-drop-files";
 import toast, { Toaster } from 'react-hot-toast';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ExtendedVacature() {
 
@@ -25,6 +26,7 @@ export default function ExtendedVacature() {
 
     const [secret, setSecret] = useState('');
     const [agree, setAgree] = useState(false);
+    const [googleCaptcha, setGoogleCaptcha] = useState(''); 
 
     
 const [file, setFile] = useState();
@@ -94,6 +96,9 @@ const fileTypes = ["pdf"];
     };
 
 
+    const handleCaptchaResponseChange = (response) => {
+        setGoogleCaptcha(response ? true : false);
+      };
     
 
 
@@ -232,6 +237,8 @@ const fileTypes = ["pdf"];
                         (e) => setAgree(!agree)
                 }/> <span className='ml-2'>Accept terms and conditions</span>
                 </label>
+                <ReCAPTCHA sitekey={import.meta.env.VITE_GOOGLE_CAPTIA_KEY} onChange={handleCaptchaResponseChange} theme="dark" className=' ' />
+          
                 <button className='w-full p-2 bg-[#f9a826] text-white'>Apply</button>
             </form>
 

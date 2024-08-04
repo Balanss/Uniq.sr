@@ -77,6 +77,7 @@ export default function About() {
     const scale= [scale1, scale2, scale3];
 
     useEffect(() => {
+
       const unsubscribe = scaleIndex0.onChange((latest) => {
         if (latest === 1) {
           setScaleText0(1);  
@@ -122,6 +123,10 @@ export default function About() {
     }, [ scaleText0, scaleText1, scaleText2, opacityText0, opacityText1, opacityText2]);
 
   //play around with rounded e and s when setting state let top me E and last inded be S
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
  
 

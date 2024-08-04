@@ -20,12 +20,8 @@ export function ImagesSliderDemo() {
   const scrollY = useMotionValue(window.scrollY);
 
   const desktopScale =  useTransform(scrollY, [0, 1200], [1, 0.95]);
-  const desktopBottomLeftRadius =  useTransform(scrollY, [0, 1200], [0, 100]);
   const desktopY =  useTransform(scrollY, [0, 3000], [0, -1000]);
-  const desktopOpacity = useTransform(scrollY, [600, 1000], [1, 0.6]);
 
-  const imageScrollDown = useTransform(scrollY, [0, 1200], [0, 1000]);
-  const imageScrollUp = useTransform(scrollY, [0, 1200], [0, -1000]);
 
   const [textRef, inView] = useInView({
     triggerOnce: false, // Change this to false if you want the animation to trigger again whenever it comes in view
@@ -44,34 +40,34 @@ export function ImagesSliderDemo() {
 
 
 
-    const uniq= 'UNIQ'.split('').map((letter, index) => {
+    const welkom= 'Welcome Bij'.split('').map((letter, index) => {
       return (
         <motion.span
           initial={{ y: -100 ,opacity:0}}
           animate={{ y: inView?0:-100 ,opacity:inView ? 1 : 0}}
-          transition={{ delay: index * .2 }}
+          transition={{ delay: index * .07 }}
           key={index}
-          className="hover-color-change relative z-20"
+          className="hover:text-gray-400/20 relative z-20 text-4xl"
         >
           {letter}
         </motion.span>
       )
     })
 
-    const C = 'C'.split('').map((letter, index) => {
+    const Uniq = 'Uniq'.split('').map((letter, index) => {
       return (
         <motion.span
           initial={{ y: -100 ,opacity:0}}
           animate={{ y: 0 ,opacity:inView ? 1 : 0}}
           transition={{ delay: 0.7 }}
           key={index}
-          className="hover-color-change relative z-20 text-orange-600"
+          className="hover:text-gray-200/60 relative z-20 text-white textsize"
         >
           {letter}
         </motion.span>
     )})
 
-    const X = 'X'.split('').map((letter, index) => {
+    const CX = 'CX'.split('').map((letter, index) => {
       return (
         <motion.span
           ref={textRef}
@@ -79,7 +75,7 @@ export function ImagesSliderDemo() {
           animate={{ y: 0 ,opacity:inView ? 1 : 0}}
           transition={{ delay: 0.8 }}
           key={index}
-          className={`hover-color-change relative z-20 text-green-600`}
+          className={`hover-color-change relative z-20 text-7xl `}
         >
           {letter}
         </motion.span>)
@@ -103,26 +99,27 @@ export function ImagesSliderDemo() {
         className="z-50 flex flex-col justify-center items-center"
       >
         <motion.div ref={textRef} style={{ scale: desktopScale, y: desktopY  }}>
-        <motion.div className=" md:tracking-widest font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4 px-4">
-        <TypewriterEffect />
-        <h1 className="md:tracking-[1rem] text-left relative z-10 hover-color-change py-4 font-bold text-gray-300 uniq">
-      {uniq}
-      {C}
-      {X}
-        {/* <motion.div 
-        initial={{ width: '10px' ,opacity:0}}
-        animate={{ width: '80%',opacity:0.7 }}
-        transition={{ duration: 1.4 }}
-        className="xl:border-b-2 border-gray-300"
-        /> */}
+        <motion.div className=" md:tracking-widest font-bold  text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 ">
+        {/* <TypewriterEffect /> */}
+        <h1 className="md:tracking-[1rem] text-left relative z-10 hover-color-change  font-bold text-gray-300 uniq ">
+      {welkom}
+      <br />
         </h1>
+
+        <h1 className="text-left">
+        {Uniq}
+        <span className="text-orange-500">{CX[0]}</span>
+        <span className="text-green-700">{CX[1]}</span>
+        </h1>
+
+
         </motion.div>
 
         <p className= " !leading-snug tracking-widest font-semibold text-xl md:text-[18px] text-left md:text-center  bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4 w-[90vw] m-auto lg:w-[35vw] ">
         Nederlandstalig Contact center in Suriname. Wij zijn gespecialiseerd in het verlenen van klantenservice, technische ondersteuning, verkoop en backoffice diensten.
         </p>
 
-        <div className="pt-8 phone:pb-3 grid phone:w-[95vw] m-auto md:grid-cols-2 gap-2 ">
+        <div className="pt-8 phone:pb-3 grid phone:w-[95vw] m-auto md:grid-cols-1 gap-2 ">
       <HomeCards />
     </div>
 

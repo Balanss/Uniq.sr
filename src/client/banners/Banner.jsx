@@ -147,9 +147,6 @@ const Banner = () => {
           <p className="mt-4 ">
           { info[0].extra}
           </p>
-          <p className="mt-4">
-          { info[0].extra}
-          </p>
       </div>
         </motion.div>
 
@@ -171,14 +168,11 @@ const Banner = () => {
           <p className="mt-4">
           { info[0].extra}
           </p>
-          <p className="mt-4">
-          { info[0].extra}
-          </p>
       </div>
         </motion.div>
 
 
-<div className="h-60"></div>
+<div className="h-96"></div>
 </div>
     </div>
   );

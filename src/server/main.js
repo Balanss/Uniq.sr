@@ -4,6 +4,10 @@ import cors from "cors";
 import axios from 'axios'
 import fileUpload from 'express-fileupload'
 import FormData from 'form-data'
+import dotenv from "dotenv";
+
+
+dotenv.config({ path: "./.env" });
 
 const app = express();
 
@@ -17,10 +21,6 @@ app.post("/api/resume", async (req, res) => {
   if (!req.body) {
       return res.status(400).json({ message: "Invalid request" });
   }
-
-  console.log('req.body', req.body);
-
-  
 
   try {
       const { name,  lastName, email, phone, message,Adres,DateOfBirth,Question1,Question2,Question3,Question4,message2 } = req.body;
@@ -53,12 +53,12 @@ app.post("/api/resume", async (req, res) => {
           });
       }
 
-      const response = await axios.post('https://hooks.zapier.com/hooks/catch/16642979/2u8ltf4/', formData, {
+      const response = await axios.post(process.env.WEBHOOK_URL, formData, {
           headers: {
               ...formData.getHeaders()
           }
       });
-      
+        console.log(res.status)
       res.status(200).send(response.data);
   } catch (err) {
       console.error('Error processing resume:', err);

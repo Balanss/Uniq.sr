@@ -19,7 +19,7 @@ export default function AboutHeader() {
             animate={{ y: 0 ,opacity:inView ? 1 : 0}}
             transition={{ delay: index * 0.02 }}
             key={index}
-            className='text-md'
+            className='hover-color-change relative z-20 text-4xl'
           >
             {letter}
           </motion.span>
@@ -56,13 +56,13 @@ export default function AboutHeader() {
       <div className='aboutgr3 w-full h-full absolute top-2 z opacity-40 blur-lg px-20'/> */}
 
         <div className="grid md:grid-cols-[40%,60%] bg-clip-text justify-between text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-        <div className="max-w-[50rem] text-4xl font-normal px-4  text-left ">
+        <div className="max-w-[50rem]  font-normal px-4  text-left  ">
          <motion.p className='text-gray-800'>{animatedText}</motion.p>
          </div>
 
           <div className="text-left mt-20 mr-0 px-4">
-          <h1 className="text-5xl font-bold text-gray-700">Over Ons</h1>
-          <p className="leading-loose  tracking-widest mt-5 text-lg text-gray-700">Bij UniqCX bieden we topklasse klantenservice vanuit Paramaribo, Suriname, met een focus op persoonlijke en innovatieve oplossingen. Ons toegewijde team zorgt ervoor dat elke klantinteractie efficiënt en effectief verloopt, zodat uw bedrijf kan groeien en bloeien.</p>
+          <h1 className="text-3xl mt-10 font-bold text-gray-700">Over Ons</h1>
+          <p className="leading-loose text-sm tracking-widest mt-5  text-gray-700">Bij UniqCX bieden we topklasse klantenservice vanuit Paramaribo, Suriname, met een focus op persoonlijke en innovatieve oplossingen. Ons toegewijde team zorgt ervoor dat elke klantinteractie efficiënt en effectief verloopt, zodat uw bedrijf kan groeien en bloeien.</p>
           </div>
 
         </div>

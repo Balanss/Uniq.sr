@@ -60,13 +60,13 @@ export default function HomeCards() {
       
         <section>
   
-            <div className=" text-xs grid phone:flex phone:mb-4 md:grid-cols-1 2xl:grid-cols-1 items-center gap-4">        
+            <div className=" text-xs grid phone:flex phone:mb-4 md:grid-cols-3 2xl:grid-cols-3 items-center gap-4">        
                 <dd className="text-sm flex gap-2">    <img src={job} alt="job" className="w-6 h-6" /> {vacature.title}</dd>
                 {/* <dd className="text-sm flex gap-2"> <img src={time} alt='time' className='size-6'/> {vacature.workingHours}</dd> */}
                 <dd  className="text-sm inline-flex gap-2"> <img src={pay} alt='pay' className='size-6'/> {vacature.pay}</dd>
                 {/* <dd className="text-s flex gap-2 "> <span className='rounded-full w-[1rem] h-[1rem] bg-green-600' /> {vacature.status}</dd> */}
                 
-                <Link to={'/vacatures'}>
+                <Link   onClick={() => localStorage.setItem('item', JSON.stringify(vacature))} to={`/vacatures/${vacature.title}`}>
   <HoverBorderGradient />
 </Link>
 

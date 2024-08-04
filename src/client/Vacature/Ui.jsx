@@ -17,7 +17,7 @@ export default function Ui({filter,inputFilter}) {
 
   return (
     <div
-      className={cn( "grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2  " )}>
+      className={cn( "grid grid-cols-1 " )}>
         {vaca.map((item, index) => (
              <div
              key={index}
@@ -25,18 +25,19 @@ export default function Ui({filter,inputFilter}) {
             {(inputFilter === '' && filter.length === 0 ) || filter.some(f => item.title.toLowerCase().includes(f)) || (inputFilter !== "" && item.title.toLowerCase().includes(inputFilter)) ?
                <motion.div
            
-              className="relative group block p-2 min-h-full w-full"
+              className="relative group block p-2 min-h-full w-full "
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               layout
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
               exit={{ opactiy: 0 }}
+
             >
               <AnimatePresence>
                 {hoveredIndex === index && (
                   <motion.span
-                    className="absolute inset-0 h-full w-full  bg-slate-800/[0.8] block rounded-3xl"
+                    className="absolute inset-0 h-full w-full  bg-gray-400/[0.8] block rounded-3xl"
                     layoutId="hoverBackground"
                     initial={{ opacity: 0 }}
                     animate={{
@@ -50,12 +51,16 @@ export default function Ui({filter,inputFilter}) {
                   />
                 )}
               </AnimatePresence>
-              <Card>
-                <motion.div >
-                   <CardTitle>{item.title}</CardTitle>
-                <CardDescription>{item.description}</CardDescription>
+              <Card className>
+              <CardTitle>{item.title}</CardTitle>
+                <motion.div className='flex flec-col flex-wrap gap-x-8 items-center justify-between' >
+                <CardDescription className='!text-[12px]'>{item.workingHours}</CardDescription>
+                <CardDescription className='!text-[12px]'>{item.location}</CardDescription>
+                <CardDescription className='!text-[12px]'>{item.pay}</CardDescription>
+                <CardDescription className='!text-[12px]'>{item.status}</CardDescription>
                 <div className='mt-8'>
-                <Link className='block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto  ' onClick={() => localStorage.setItem('item', JSON.stringify(item))} to={`/vacatures/${item.title}`}>Bekijk Vacature</Link>
+                <Link className='block w-full rounded bg-white px-8 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto !text-[11px]  ' 
+                onClick={() => localStorage.setItem('item', JSON.stringify(item))} to={`/vacatures/${item.title}`}>Bekijk Vacature</Link>
                 </div>
                 </motion.div>
                
@@ -81,7 +86,7 @@ export const Card = ({
       )}
     >
       <div className="relative z-50">
-        <div className="p-4">{children}</div>
+        <div className="">{children}</div>
       </div>
     </div>
   );

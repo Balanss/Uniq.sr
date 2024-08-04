@@ -69,3 +69,7 @@ a,span{
   font-style: normal;
   font-size: 13px;
 }
+
+.textsize{
+  font-size: clamp(5.625rem, 5.051rem + 1.5306vw, 7.5rem);
+}
